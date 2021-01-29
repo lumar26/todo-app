@@ -20,7 +20,7 @@ const App =() => {
         <div>
             <h4>Todo Aplikacija</h4>
             <Form input={input} setTodos={setTodos} todos={todos} setInput={setInput} />
-            <List />
+            <List todos={todos} setTodos={setTodos}/>
         </div>
     );
 }
