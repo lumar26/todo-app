@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
-// obrati paznju da mozda treba ekstenzija!
 import Form from "./Components/Form.jsx";
 import List from "./Components/List.jsx";
+import "./App.css";
 
 
 
@@ -31,18 +31,25 @@ const App = () => {
     // useEffect(() => saveTodosToLocal, []);
 
 
-    return (
-        <div>
-            <h4>Todo Aplikacija</h4>
-            <Form
-                filteredItems={filteredItems} setFilteredItems={setFilteredItems}
-                filter={filter} setFilter={setFilter}
-                input={input} setTodos={setTodos}
-                todos={todos} setInput={setInput} />
-            <List
-                filteredItems={filteredItems} setFilteredItems={setFilteredItems}
-                todos={todos} setTodos={setTodos} />
-        </div>
+    return ( <
+        div >
+        <
+        h4 > Todo Aplikacija < /h4> <
+        Form filteredItems = { filteredItems }
+        setFilteredItems = { setFilteredItems }
+        filter = { filter }
+        setFilter = { setFilter }
+        input = { input }
+        setTodos = { setTodos }
+        todos = { todos }
+        setInput = { setInput }
+        /> <
+        List filteredItems = { filteredItems }
+        setFilteredItems = { setFilteredItems }
+        todos = { todos }
+        setTodos = { setTodos }
+        /> <
+        /div>
     );
 }
 
