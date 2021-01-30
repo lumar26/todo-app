@@ -1,21 +1,48 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 // instaliran dodatan paket za generisanje id-jeva, i preko f-je nextId() generisemo novi id
-import nextId  from "react-id-generator";
+import nextId from "react-id-generator";
 
-const Form = ({input, todos, setTodos, setInput}) => {
+const Form = ({ filter, setFilter, setFilteredItems, input, todos, setTodos, setInput }) => {
 
-    // const [todoId] = useId();
+
+    useEffect(() => {
+        handleFilter();
+    }, [filter, todos])
 
     const inputHandler = (e) => {
         setInput(e.target.value);
     }
 
-    const handleNewTodo =(e) => {
+    const handleNewTodo = (e) => {
         e.preventDefault();
         setInput(input);
-        setTodos([...todos, {todoInfo:input, done:false, id: nextId() + 1, importance:"standard"}]);
+        input !== ""
+            ? setTodos([...todos, { todoInfo: input, done: false, id: nextId(), importance: "standard" }])
+            : alert("Ne može se napraviti todo od praznog unosa");
         // sad praznimo polje za unos
         setInput("");
+    }
+
+    const handleFilter = (ev) => {
+        switch (filter) {
+            case "done":
+                setFilteredItems(todos.filter(el => el.done));
+                break;
+            case "undone":
+                setFilteredItems(todos.filter(el => !el.done));
+                break;
+            default:
+                setFilteredItems(todos);
+                break;
+        }
+    }
+
+    const handleChangeFilter = (ev) => {
+        setFilter(ev.target.value);
+    }
+    const enterPressed = (ev) => {
+        let code = ev.keyCode || ev.which;
+        if (code === 13) handleNewTodo();
     }
 
     return (
@@ -23,15 +50,15 @@ const Form = ({input, todos, setTodos, setInput}) => {
             {/* dodavanjem value={input} mi obezbedjujemo da kad god se stanje inputa promeni
             nakon ponovnog renderovanja value bude jednako inputu koji smo setovali na "" */}
             <input value={input} onChange={inputHandler} type="text" className="todo-input" />
-            <button onClick={handleNewTodo} className="todo-button" type="submit">
+            <button onKeyPress={enterPressed} onClick={handleNewTodo} className="todo-button" type="submit">
                 {/* ovo menjamo kasnije */}
                 <i className="fas fa-plus-square"></i>
             </button>
             <div className="select">
-                <select name="todos" className="filter-todo">
+                <select onChange={handleChangeFilter} name="todos" className="filter-todo">
                     <option value="all">Svi</option>
-                    <option value="completed">Završeni</option>
-                    <option value="uncompleted">Nezavršeni</option>
+                    <option value="done">Završeni</option>
+                    <option value="undone">Nezavršeni</option>
                 </select>
             </div>
         </form>
