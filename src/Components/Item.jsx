@@ -26,8 +26,8 @@ const Item = ({ info, todo, todos, setTodos }) => {
         <div className="item">
             
             <div>
-                <button onClick={handleToggleStatus} className="btn-check"><i class="fas fa-check"></i></button>
-                <button onClick={handleDelete} className="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                <button onClick={handleToggleStatus} className="btn-check"><i className="fas fa-check"></i></button>
+                <button onClick={handleDelete} className="btn-delete"><i className="fas fa-trash-alt"></i></button>
             </div>
 
             <span className={`${todo.done ? "done" : ""}`}>{info}</span>
