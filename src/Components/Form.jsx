@@ -4,7 +4,6 @@ import nextId from "react-id-generator";
 
 const Form = ({ filter, setFilter, setFilteredItems, input, todos, setTodos, setInput }) => {
 
-
     useEffect(() => {
         handleFilter();
     }, [filter, todos])
@@ -47,19 +46,25 @@ const Form = ({ filter, setFilter, setFilteredItems, input, todos, setTodos, set
 
     return (
         <form>
-            {/* dodavanjem value={input} mi obezbedjujemo da kad god se stanje inputa promeni
+            <div className="form-container">
+                <div className="form-container1">
+                    {/* dodavanjem value={input} mi obezbedjujemo da kad god se stanje inputa promeni
             nakon ponovnog renderovanja value bude jednako inputu koji smo setovali na "" */}
-            <input value={input} onChange={inputHandler} type="text" className="todo-input" />
-            <button onKeyPress={enterPressed} onClick={handleNewTodo} className="todo-button" type="submit">
-                {/* ovo menjamo kasnije */}
-                <i className="fas fa-plus-square"></i>
-            </button>
-            <div className="select">
-                <select onChange={handleChangeFilter} name="todos" className="filter-todo">
-                    <option value="all">Svi</option>
-                    <option value="done">Završeni</option>
-                    <option value="undone">Nezavršeni</option>
-                </select>
+                    <input value={input} onChange={inputHandler} type="text" className="todo-input" placeholder="Unesite Vaš zadatak:" />
+                    <button onKeyPress={enterPressed} onClick={handleNewTodo} className="todo-button" type="submit">
+                        {/* ovo menjamo kasnije */}
+                        <i className="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div className="form-container2">
+                    <div className="select">
+                        <select onChange={handleChangeFilter} name="todos" className="filter-todo">
+                            <option value="all">Svi</option>
+                            <option value="done">Završeni</option>
+                            <option value="undone">Nezavršeni</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </form>
     );
