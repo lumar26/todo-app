@@ -17,7 +17,6 @@ const useLocalStorage = (record, initialValue) => {
         }
     })
 
-
     // definisanje funkcije koja menja vrednost
     const setValue = value => {
         try {
@@ -32,6 +31,5 @@ const useLocalStorage = (record, initialValue) => {
     // na kraju treba vratiti stanje i funkciju za promenu stanja
     return [storedValue, setValue];
 }
-
 
 export default useLocalStorage;

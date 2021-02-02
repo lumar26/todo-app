@@ -5,11 +5,7 @@ import useLocalStorage from "./hooks/UseLocalStorage.jsx"
 import "./App.css";
 
 
-
-
-
 const App = () => {
-
 
     // Stanja sa useState
     const [input, setInput] = useState("");
@@ -18,7 +14,7 @@ const App = () => {
     const [filter, setFilter] = useState(["all"]);
     const [filteredItems, setFilteredItems] = useState([todos]);
 
-    return (<div >
+    return (<div>
         <h4 > Todo Aplikacija </h4>
         <Form filteredItems={filteredItems}
             setFilteredItems={setFilteredItems}

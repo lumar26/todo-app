@@ -9,7 +9,7 @@ const Item = ({ info, todo, todos, setTodos }) => {
 
     const handleToggleStatus = () => {
         // ovde treba da odradimo dodavanje i uklanjanje klase
-        // ta klasa treba recimo da precrta, promeni boju, onemoguci editovanje
+        // ta klasa treba da precrta odredjenu todo stavku
         setTodos(todos.map(el => {
             if (el.id === todo.id) {
                 return {
@@ -24,13 +24,11 @@ const Item = ({ info, todo, todos, setTodos }) => {
 
     return (
         <div className="item">
-            
-            <div>
+            <span className={`${todo.done ? "done" : ""}`}>{info}</span>
+            <div className="confirmed">
                 <button onClick={handleToggleStatus} className="btn-check"><i className="fas fa-check"></i></button>
                 <button onClick={handleDelete} className="btn-delete"><i className="fas fa-trash-alt"></i></button>
             </div>
-
-            <span className={`${todo.done ? "done" : ""}`}>{info}</span>
         </div>
     );
 }
